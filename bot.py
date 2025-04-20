@@ -186,7 +186,8 @@ def main():
 
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("transferencia", transferencia))
-    dp.add_handler(MessageHandler(Filters.chat_type.private & (~Filters.command), private_chat_message))
+    dp.add_handler(MessageHandler(filters.ChatType.PRIVATE & (~filters.COMMAND), private_chat_message))
+
 
     updater.start_polling()
     updater.idle()
