@@ -1,5 +1,5 @@
 from telegram import Update, Bot
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
 import random
@@ -186,8 +186,7 @@ def main():
 
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("transferencia", transferencia))
-    dp.add_handler(MessageHandler(filters.ChatType.PRIVATE & (~filters.COMMAND), private_chat_message))
-
+    dp.add_handler(MessageHandler(filters.Private & (~filters.COMMAND), private_chat_message))
 
     updater.start_polling()
     updater.idle()
