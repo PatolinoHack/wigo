@@ -180,16 +180,15 @@ def transferencia(update: Update, context: CallbackContext):
             f"❌ Ocurrió un error al procesar tu solicitud\n\nDesarrollado por {TU_USUARIO}"
         )
 
-def main():
-    updater = Updater(TOKEN, use_context=True)
-    dp = updater.dispatcher
+async def main():
+    application = Application.builder().token(TOKEN).build()
 
-    dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(CommandHandler("transferencia", transferencia))
-    dp.add_handler(MessageHandler(filters.Private & (~filters.COMMAND), private_chat_message))
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("transferencia", transferencia))
+    application.add_handler(MessageHandler(filters.ChatType.PRIVATE & (~filters.COMMAND), private_chat_message))
 
-    updater.start_polling()
-    updater.idle()
+    await application.run_polling()
 
 if __name__ == "__main__":
-    main()
+    import asyncio
+    asyncio.run(main())
