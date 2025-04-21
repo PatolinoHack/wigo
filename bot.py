@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from telegram import Update, Bot
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
 from PIL import Image, ImageDraw, ImageFont
@@ -6,6 +7,7 @@ import random
 from datetime import datetime
 import logging
 import re
+
 
 # Configuración
 TOKEN = "7538427876:AAHvf67AhwLT3XpekRbx9RL2ywwZD905mGI"
